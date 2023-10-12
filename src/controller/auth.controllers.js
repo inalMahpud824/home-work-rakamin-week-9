@@ -14,10 +14,9 @@ async function login (req, res) {
     const {email, password} = req.body
     try{
         const result = await authServices.login(email, password)
-        res.status(200).json({
+        res.status(200).header('Authorization', `${result}`).json({
             data: result,
             message: "login berhasil"
-            
         })
         // res.json({ message: 'User login successfully', user });
     }catch(error) {

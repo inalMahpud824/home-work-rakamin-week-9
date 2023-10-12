@@ -1,5 +1,6 @@
 const prisma = require("../../prisma/prisma-client.js");
 const jwt = require("jsonwebtoken");
+require('dotenv').config();
 class ResponseError extends Error {
   constructor(status, message) {
     super(message);
@@ -60,20 +61,22 @@ const login = async (email, password) => {
     id: user.id,
     email: user.email
   }
-  const key = "iniadalahkoentchie"
+  const key = process.env.JWT_SECRET
   const aksesToken = jwt.sign(payload, key,{expiresIn: '1h'});
   const refraseToken = jwt.sign(payload, key, {expiresIn: '7d'})
-//   return prismaClient.users.update({
-//     data: {
-//       token: token,
-//     },
-//     where: {
-//       username: user.username,
-//     },
-//     select: {
-//       token: true,
-//     },
-//   });
+
+   prisma.users.update({
+    data: {
+        token: refraseToken
+    },
+    where:{
+        id: user.id
+    },
+    select:{
+        token: true
+    }
+  })
+  return aksesToken
 };
 
 module.exports = { register, login };

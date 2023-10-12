@@ -7,27 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model movies {
   id     Int @id
   title  String? @db.VarChar(150)
   genres String? @db.VarChar(50)
   year   String? @db.VarChar(50)
-
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model refres_token {
   id_users Int @id
   token    String? @db.VarChar(200)
 }
 
-/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
 model users {
-  id       Int @id
-  email    String? @db.VarChar(50) @unique
+  id       Int     @id
+  email    String? @db.VarChar(50)
   gender   String? @db.VarChar(50)
   password String? @db.VarChar(50)
   role     String? @db.VarChar(50)
-
+  token    String? @db.VarChar(200)
 }

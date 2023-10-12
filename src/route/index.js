@@ -1,6 +1,8 @@
+const authRoutes = require('./auth.routes')
+const movieRoutes = require('./movie.routes')
+
 const router = require('express').Router()
-const {movieControllers} = require('../controller')
 
-router.get('/movies', movieControllers.getAllMovie)
-
+router.use('/movies', movieRoutes)
+router.use('/auth', authRoutes)
 module.exports = router

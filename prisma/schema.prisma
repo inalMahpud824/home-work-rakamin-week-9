@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,21 +6,28 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-model Movies {
-  id Int @id
-  title String
-  genres String
-  year String
 
-  @@map("movies")
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model movies {
+  id     Int @id
+  title  String? @db.VarChar(150)
+  genres String? @db.VarChar(50)
+  year   String? @db.VarChar(50)
+
 }
 
-model Users {
-  id Int @id
-  email String
-  gender String
-  password String
-  role String
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model refres_token {
+  id_users Int @id
+  token    String? @db.VarChar(200)
+}
 
-  @@map("users")
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model users {
+  id       Int @id
+  email    String? @db.VarChar(50) @unique
+  gender   String? @db.VarChar(50)
+  password String? @db.VarChar(50)
+  role     String? @db.VarChar(50)
+
 }

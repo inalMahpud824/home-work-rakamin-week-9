@@ -1,3 +1,3 @@
 const movieControllers = require('./movie.controllers')
-
-module.exports = {movieControllers}
+const authControllers = require('./auth.controllers')
+module.exports = {movieControllers, authControllers}

@@ -1,15 +1,64 @@
 const {movieServices} = require("../service")
 
 async function getAllMovie(req, res) {
+    const page = req.query.page
+    const pageSize =  req.query.page_size
     try{
-        const result = await movieServices.getAllMovie()
-        res.json(result)
+        const result = await movieServices.getAllMovie(page, pageSize)
+        res.status(200).json(result)
     }catch(err){
         console.error(err)
         res.status(500).send(err.message);
     }
 }
 
+async function getMovieById(req, res) {
+    const {id} = req.params
+    try{
+        const result = await movieServices.getMovieById(id)
+        res.status(200).json(result)
+    }catch(err){
+        console.error(err)
+        res.status(500).send(err.message);
+    }
+}
+
+async function createMovie(req, res) {
+    const {id, title, genres, year} = req.body
+    try{
+        const result = await movieServices.createMovie(id, title, genres, year)
+        res.status(200).json({messege: "create new data success ",result})
+    }catch(err){
+        console.error(err)
+    }
+}
+
+async function deleteMovieById(req, res) {
+    try{
+        const {id} = req.params
+        const result = await movieServices.deleteMovieById(id)
+        res.status(200).json({messege: "delete success ",result})
+    }catch(err){
+        console.error(err)
+        res.status(500)
+    }
+}
+
+async function updateMoviesById(req, res) {
+    try{
+        const {id} = req.params
+        const {title, genres, year} = req.body
+        const result = await movieServices.updateMoviesById(id, title, genres, year)
+        res.status(200).json({messege: "update success ",result})
+    }catch(err) {
+        console.error(err)
+        res.status(500)
+    }
+}
 module.exports = {
-    getAllMovie
+    getAllMovie,
+    getMovieById,
+    createMovie,
+    deleteMovieById,
+    updateMoviesById
 }

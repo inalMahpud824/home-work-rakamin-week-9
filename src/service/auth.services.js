@@ -63,19 +63,6 @@ const login = async (email, password) => {
   }
   const key = process.env.JWT_SECRET
   const aksesToken = jwt.sign(payload, key,{expiresIn: '1h'});
-  const refraseToken = jwt.sign(payload, key, {expiresIn: '7d'})
-
-   prisma.users.update({
-    data: {
-        token: refraseToken
-    },
-    where:{
-        id: user.id
-    },
-    select:{
-        token: true
-    }
-  })
   return aksesToken
 };
 

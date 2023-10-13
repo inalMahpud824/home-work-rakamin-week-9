@@ -1,3 +1,4 @@
 const movieControllers = require('./movie.controllers')
 const authControllers = require('./auth.controllers')
-module.exports = {movieControllers, authControllers}
+const userControllers = require('./user.controllers')
+module.exports = {movieControllers, authControllers, userControllers}

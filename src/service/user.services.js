@@ -28,26 +28,6 @@ const getUserById = async (params) => {
     }
 }
 
-const createUser = async (id, email, gender, password, role) => {
-    try{
-        const result = await prisma.movies.create({
-            data:{
-                id: id,
-                email: email,
-                gender: gender,
-                password: password,
-                role: role
-            },select:{
-                email: true,
-                gender: true,
-                role: true
-            }
-        })
-        return result
-    }catch(err){
-        console.error(err)
-    }
-}
 const deleteUserById = async (params) => {
     const id = parseInt(params)
     try{
@@ -84,4 +64,4 @@ const updateUserById = async (params, email, gender, password, role) => {
         console.error(err)
     }
 }
-module.exports = {getAllUsers, getUserById, createUser, deleteUserById, updateUserById}
+module.exports = {getAllUsers, getUserById, deleteUserById, updateUserById}

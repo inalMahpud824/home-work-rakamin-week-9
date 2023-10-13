@@ -12,6 +12,7 @@ async function authorization(req, res, next) {
         message: "Silahkan login terlebih dahulu",
       });
     }
+    const aksesTokenPayload = jwt.verify(aksesToken, key,);
     next()
   } catch (err) {
     return res.status(401).json({

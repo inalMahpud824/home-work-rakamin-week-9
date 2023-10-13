@@ -25,5 +25,4 @@ model users {
   gender   String? @db.VarChar(50)
   password String? @db.VarChar(50)
   role     String? @db.VarChar(50)
-  token    String? @db.VarChar(200)
 }

@@ -1,2 +1,3 @@
 const authMiddlewares = require('./auth.middelwares')
-module.exports = {authMiddlewares}
+const loggingMiddleware = require('./logging.middleware')
+module.exports = {authMiddlewares, loggingMiddleware}

@@ -8,7 +8,6 @@ class ResponseError extends Error {
   }
 }
 const register = async (id, email, gender, password, role) => {
-  try {
     const user = await prisma.users.findFirst({
       where: {
         email: email,
@@ -34,10 +33,6 @@ const register = async (id, email, gender, password, role) => {
       email: createdUser.email,
       role: createdUser.role,
     };
-  } catch (err) {
-    console.error(err);
-    res.status(400).json({ error: err.message });
-  }
 };
 
 const login = async (email, password) => {

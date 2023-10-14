@@ -14,7 +14,7 @@ const getAllUsers = async (page = 1, pageSize = Number.MAX_SAFE_INTEGER) => {
     take: perPage,
   });
   if (!result) {
-    throw new ResponseError(401, "Username or password wrong");
+    throw new ResponseError(500, "Server Error");
   }
   return result;
 };

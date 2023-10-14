@@ -8,7 +8,7 @@ async function getAllMovie(req, res) {
         res.status(200).json(result)
     }catch(err){
         console.error(err)
-        res.status(500).send(err.message);
+        res.status(err.status).json(err.message)
     }
 }
 
@@ -19,7 +19,7 @@ async function getMovieById(req, res) {
         res.status(200).json(result)
     }catch(err){
         console.error(err)
-        res.status(500).send(err.message);
+        res.status(err.status).json(err.message)
     }
 }
 
@@ -30,6 +30,7 @@ async function createMovie(req, res) {
         res.status(200).json({messege: "create new data success ",result})
     }catch(err){
         console.error(err)
+        res.status(500).json({message: "internal Server Error"})
     }
 }
 
@@ -40,7 +41,7 @@ async function deleteMovieById(req, res) {
         res.status(200).json({messege: "delete success ",result})
     }catch(err){
         console.error(err)
-        res.status(500)
+        res.status(err.status).json(err.message)
     }
 }
 
@@ -52,7 +53,7 @@ async function updateMoviesById(req, res) {
         res.status(200).json({messege: "update success ",result})
     }catch(err) {
         console.error(err)
-        res.status(500)
+        res.status(err.status).json(err.message)
     }
 }
 module.exports = {

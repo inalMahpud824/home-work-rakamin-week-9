@@ -16,9 +16,8 @@ async function login (req, res) {
         const result = await authServices.login(email, password)
         res.status(200).header('Authorization', `${result}`).json({
             data: result,
-            message: "login berhasil"
+            message: "login succes"
         })
-        // res.json({ message: 'User login successfully', user });
     }catch(error) {
         res.status(error.status || 500).json({ error: error.message });
     }
